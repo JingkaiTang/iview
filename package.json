@@ -1,8 +1,8 @@
 {
-  "name": "iview",
-  "version": "2.6.0",
+  "name": "iview-sincinfo",
+  "version": "2.6.0-a",
   "title": "iView",
-  "description": "A high quality  UI components Library with Vue.js",
+  "description": "A high quality  UI components Library with Vue.js, forked version for sincinfo",
   "homepage": "http://www.iviewui.com",
   "keywords": [
     "iview",

@@ -16,7 +16,7 @@
                         <div :class="[prefixCls + '-body']"><slot></slot></div>
                         <div :class="[prefixCls + '-footer']" v-if="!footerHide">
                             <slot name="footer">
-                                <i-button type="text" size="large" icon="close-round" @click.native="cancel">{{ localeCancelText }}</i-button>
+                                <i-button type="ghost" size="large" icon="close-round" @click.native="cancel">{{ localeCancelText }}</i-button>
                                 <i-button type="primary" size="large" icon="checkmark-round" :loading="buttonLoading" @click.native="ok">{{ localeOkText }}</i-button>
                             </slot>
                         </div>

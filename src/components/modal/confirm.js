@@ -29,8 +29,9 @@ Modal.newInstance = properties => {
             if (this.showCancel) {
                 footerVNodes.push(h(Button, {
                     props: {
-                        type: 'text',
-                        size: 'large'
+                        type: 'ghost',
+                        size: 'large',
+                        icon: 'close-round'
                     },
                     on: {
                         click: this.cancel
@@ -41,6 +42,7 @@ Modal.newInstance = properties => {
                 props: {
                     type: 'primary',
                     size: 'large',
+                    icon: 'checkmark-round',
                     loading: this.buttonLoading
                 },
                 on: {

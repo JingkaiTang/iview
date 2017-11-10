@@ -2,6 +2,8 @@
     <div>
         <i-button @click="showModal = true">Modal有Tabs</i-button>
         <i-button @click="showModal2 = true">Modal无Tabs</i-button>
+        <i-button @click="$Modal.info({content: 'hi'})">Info</i-button>
+        <i-button @click="$Modal.confirm({content: 'hi?'})">Confirm</i-button>
         <Modal v-model="showModal" title="弹窗">
             <Tabs>
                 <Tab-pane label="演示" style="height: 80px;">

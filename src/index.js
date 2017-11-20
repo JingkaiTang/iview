@@ -153,7 +153,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 const API = {
-    version: '2.6.0',
+    version: process.env.VERSION, // eslint-disable-line no-undef
     locale: locale.use,
     i18n: locale.i18n,
     install,

@@ -357,12 +357,23 @@
                             const $td = this.$refs.tbody.$el.querySelectorAll('tbody tr')[0].children;
                             for (let i = 0; i < $td.length; i++) {    // can not use forEach in Firefox
                                 const column = this.cloneColumns[i];
-
+                                
                                 let width = parseInt(getStyle($td[i], 'width'));
                                 if (i === autoWidthIndex) {
                                     width = parseInt(getStyle($td[i], 'width')) - 1;
                                 }
-                                if (column.width) width = column.width;
+                                
+                                if (column.width) { 
+                                    width = column.width;
+                                } else {
+                                    if (column.minWidth && width < column.minWidth) {
+                                        console.log(`${i}`, width)
+                                        width = column.minWidth
+                                    }
+                                    if (column.maxWidth && width > column.maxWidth) {
+                                        width = column.maxWidth
+                                    }  
+                                }
 
                                 this.cloneColumns[i]._width = width;
 
@@ -736,8 +747,8 @@
             this.$nextTick(() => this.ready = true);
 
             on(window, 'resize', this.handleResize);
-            this.observer = elementResizeDetectorMaker();
-            this.observer.listenTo(this.$el, this.handleResize);
+            // this.observer = elementResizeDetectorMaker();
+            // this.observer.listenTo(this.$el, this.handleResize);
 
             this.$on('on-visible-change', (val) => {
                 if (val) {
@@ -748,7 +759,7 @@
         },
         beforeDestroy () {
             off(window, 'resize', this.handleResize);
-            this.observer.removeListener(this.$el, this.handleResize);
+            // this.observer.removeListener(this.$el, this.handleResize);
         },
         watch: {
             data: {

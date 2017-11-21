@@ -1,3 +1,14 @@
+## Fork后的修订信息
+### Table
+为`columns`属性添加了
+- `maxWidth` 最大宽度，自动扩展宽度的最大值
+- `minWidth` 最小宽度，自动宽展宽度的最小值
+
+注意：当`width`属性存在时，会覆盖这两个属性
+
+## 原README
+
+
 <p align="center">
     <a href="https://www.iviewui.com">
         <img width="200" src="https://file.iviewui.com/logo.svg">

@@ -788,8 +788,8 @@
             this.$nextTick(() => this.ready = true);
 
             on(window, 'resize', this.handleResize);
-            // this.observer = elementResizeDetectorMaker();
-            // this.observer.listenTo(this.$el, this.handleResize);
+            this.observer = elementResizeDetectorMaker();
+            this.observer.listenTo(this.$el, this.handleResize);
 
             this.$on('on-visible-change', (val) => {
                 if (val) {
@@ -800,7 +800,7 @@
         },
         beforeDestroy () {
             off(window, 'resize', this.handleResize);
-            // this.observer.removeListener(this.$el, this.handleResize);
+            this.observer.removeListener(this.$el, this.handleResize);
         },
         watch: {
             data: {

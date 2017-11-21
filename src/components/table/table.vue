@@ -365,34 +365,35 @@
                                 widthList[i] = column.width ? column.width : 0
                                 tableWidth -= widthList[i]
                               }
-                              if (tableWidth > 0) {
-                                let avgWidth = tableWidth / len
+                              let avgWidth = tableWidth / len
+                              for (let i = 0; i < $td.length; i++) {
+                                if (widthList[i] > 0) continue
+                                const column = this.cloneColumns[i]
+                                if (column.maxWidth && avgWidth > column.maxWidth) {
+                                  widthList[i] = column.maxWidth
+                                  tableWidth -= widthList[i]
+                                  len--
+                                }
+                              }
+                              if (len > 0) {
+                                avgWidth = tableWidth / len
                                 for (let i = 0; i < $td.length; i++) {
                                   if (widthList[i] > 0) continue
                                   const column = this.cloneColumns[i]
-                                  if (column.maxWidth && avgWidth > column.maxWidth) {
-                                    widthList[i] = column.maxWidth
+                                  if (column.minWidth && avgWidth < column.minWidth) {
+                                    widthList[i] = column.minWidth
                                     tableWidth -= widthList[i]
                                     len--
                                   }
                                 }
-                                if (len > 0 && tableWidth > 0) {
+                                if (len > 0) {
                                   avgWidth = tableWidth / len
+                                  if (avgWidth < 0) {
+                                    avgWidth = 10
+                                  }
                                   for (let i = 0; i < $td.length; i++) {
                                     if (widthList[i] > 0) continue
-                                    const column = this.cloneColumns[i]
-                                    if (column.minWidth && avgWidth < column.minWidth) {
-                                      widthList[i] = column.minWidth
-                                      tableWidth -= widthList[i]
-                                      len--
-                                    }
-                                  }
-                                  if (len > 0 && tableWidth > 0) {
-                                    avgWidth = tableWidth / len
-                                    for (let i = 0; i < $td.length; i++) {
-                                      if (widthList[i] > 0) continue
-                                      widthList[i] = avgWidth
-                                    }
+                                    widthList[i] = avgWidth
                                   }
                                 }
                               }

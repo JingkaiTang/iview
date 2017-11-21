@@ -411,6 +411,12 @@
                                       width = column.width;
                                   }
                                 }
+                                if (column.minWidth && width < column.minWidth) {
+                                  width = column.minWidth
+                                }
+                                if (column.maxWidth && width > column.maxWidth) {
+                                  width = column.maxWidth
+                                }
                                 this.cloneColumns[i]._width = width
                                 columnsWidth[column._index] = {
                                     width: width
@@ -782,8 +788,8 @@
             this.$nextTick(() => this.ready = true);
 
             on(window, 'resize', this.handleResize);
-            this.observer = elementResizeDetectorMaker();
-            this.observer.listenTo(this.$el, this.handleResize);
+            // this.observer = elementResizeDetectorMaker();
+            // this.observer.listenTo(this.$el, this.handleResize);
 
             this.$on('on-visible-change', (val) => {
                 if (val) {
@@ -794,7 +800,7 @@
         },
         beforeDestroy () {
             off(window, 'resize', this.handleResize);
-            this.observer.removeListener(this.$el, this.handleResize);
+            // this.observer.removeListener(this.$el, this.handleResize);
         },
         watch: {
             data: {

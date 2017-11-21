@@ -15,22 +15,27 @@
             return {
                 columns3: [
                     {
+                        width: 80,
                         title: '#',
                         type: 'index'
                     },
                     {
+                        width: 80,
                         type: 'selection'
                     },
                     {
+                        minWidth: 120,
                         title: 'Column 1',
                         key: 'c1'
                     },
                     {
+                        minWidth: 120,
                         title: 'Column 2',
                         key: 'c2'
                     },
                     {
                         maxWidth: 300,
+                        minWidth: 100,
                         title: 'Column 3',
                         key: 'c3'
                     },
@@ -55,6 +60,7 @@
                         key: 'c7'
                     },
                     {
+                        width: 200,
                         title: 'action',
                         fixed: 'right',
                         render: (h, p) => h('span', 'hello')

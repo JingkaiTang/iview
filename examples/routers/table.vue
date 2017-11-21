@@ -30,6 +30,7 @@
                         key: 'c2'
                     },
                     {
+                        maxWidth: 300,
                         title: 'Column 3',
                         key: 'c3'
                     },
@@ -47,8 +48,8 @@
                 data3: [
                     {
                       c1: 'c1 content: testing',
-                      c2: 'c2 content',
-                      c3: 'c3 content',
+                      c2: 'c2 content: attention please',
+                      c3: 'c3 content: ... dudu ...',
                       c4: 'the quick brown fox jumps over the lazy dog.'
                     }
                 ],

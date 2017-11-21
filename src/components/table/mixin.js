@@ -23,9 +23,7 @@ export default {
                 width = column.width;
             } else if (this.columnsWidth[column._index]) {
                 width = this.columnsWidth[column._index].width;
-            } else if (column.minWidth) {
-                width = column.minWidth
-            }
+            } 
             // when browser has scrollBar,set a width to resolve scroll position bug
             if (this.columns.length === index + 1 && top && this.$parent.bodyHeight !== 0) {
                 width += this.$parent.scrollBarWidth;

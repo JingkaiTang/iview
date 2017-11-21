@@ -355,31 +355,66 @@
 
                         if (this.data.length) {
                             const $td = this.$refs.tbody.$el.querySelectorAll('tbody tr')[0].children;
-                            for (let i = 0; i < $td.length; i++) {    // can not use forEach in Firefox
-                                const column = this.cloneColumns[i];
-                                
-                                let width = parseInt(getStyle($td[i], 'width'));
-                                if (i === autoWidthIndex) {
-                                    width = parseInt(getStyle($td[i], 'width')) - 1;
+                            let widthList = new Array($td.length)
+                            
+                            let len  = this.columns.filter(cell => !cell.width).length
+                            if (len > 0) {
+                              let tableWidth = this.tableWidth
+                              for (let i = 0; i < $td.length; i++) {
+                                const column = this.cloneColumns[i]
+                                widthList[i] = column.width ? column.width : 0
+                                tableWidth -= widthList[i]
+                              }
+                              if (tableWidth > 0) {
+                                let avgWidth = tableWidth / len
+                                for (let i = 0; i < $td.length; i++) {
+                                  if (widthList[i] > 0) continue
+                                  const column = this.cloneColumns[i]
+                                  if (column.maxWidth && avgWidth > column.maxWidth) {
+                                    widthList[i] = column.maxWidth
+                                    tableWidth -= widthList[i]
+                                    len--
+                                  }
                                 }
-                                
-                                if (column.width) { 
-                                    width = column.width;
-                                } else {
-                                    if (column.minWidth && width < column.minWidth) {
-                                        console.log(`${i}`, width)
-                                        width = column.minWidth
+                                if (len > 0 && tableWidth > 0) {
+                                  avgWidth = tableWidth / len
+                                  for (let i = 0; i < $td.length; i++) {
+                                    if (widthList[i] > 0) continue
+                                    const column = this.cloneColumns[i]
+                                    if (column.minWidth && avgWidth < column.minWidth) {
+                                      widthList[i] = column.minWidth
+                                      tableWidth -= widthList[i]
+                                      len--
                                     }
-                                    if (column.maxWidth && width > column.maxWidth) {
-                                        width = column.maxWidth
-                                    }  
+                                  }
+                                  if (len > 0 && tableWidth > 0) {
+                                    avgWidth = tableWidth / len
+                                    for (let i = 0; i < $td.length; i++) {
+                                      if (widthList[i] > 0) continue
+                                      widthList[i] = avgWidth
+                                    }
+                                  }
                                 }
-
-                                this.cloneColumns[i]._width = width;
-
+                              }
+                            }
+                            
+                            for (let i = 0; i < $td.length; i++) {
+                                const column = this.cloneColumns[i]
+                                let width = widthList[i]
+                                if (width <= 0) {
+                                  let width = parseInt(getStyle($td[i], 'width'));
+                                  if (i === autoWidthIndex) {
+                                      width = parseInt(getStyle($td[i], 'width')) - 1;
+                                  }
+                                  
+                                  if (column.width) { 
+                                      width = column.width;
+                                  }
+                                }
+                                this.cloneColumns[i]._width = width
                                 columnsWidth[column._index] = {
                                     width: width
-                                };
+                                }
                             }
                             this.columnsWidth = columnsWidth;
                         }

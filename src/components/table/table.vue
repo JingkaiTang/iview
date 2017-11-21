@@ -386,11 +386,10 @@
                                     len--
                                   }
                                 }
-                                if (len > 0) {
-                                  avgWidth = tableWidth / len
-                                  if (avgWidth < 0) {
-                                    avgWidth = 10
-                                  }
+                              }
+                              if (len > 0) {
+                                avgWidth = tableWidth / len
+                                if (avgWidth > 0) {
                                   for (let i = 0; i < $td.length; i++) {
                                     if (widthList[i] > 0) continue
                                     widthList[i] = avgWidth
@@ -783,8 +782,8 @@
             this.$nextTick(() => this.ready = true);
 
             on(window, 'resize', this.handleResize);
-            // this.observer = elementResizeDetectorMaker();
-            // this.observer.listenTo(this.$el, this.handleResize);
+            this.observer = elementResizeDetectorMaker();
+            this.observer.listenTo(this.$el, this.handleResize);
 
             this.$on('on-visible-change', (val) => {
                 if (val) {
@@ -795,7 +794,7 @@
         },
         beforeDestroy () {
             off(window, 'resize', this.handleResize);
-            // this.observer.removeListener(this.$el, this.handleResize);
+            this.observer.removeListener(this.$el, this.handleResize);
         },
         watch: {
             data: {

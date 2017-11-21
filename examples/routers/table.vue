@@ -40,6 +40,21 @@
                         key: 'c4'
                     },
                     {
+                        minWidth: 100,
+                        title: 'Column 5',
+                        key: 'c5'
+                    },
+                    {
+                        minWidth: 100,
+                        title: 'Column 6',
+                        key: 'c6'
+                    },
+                    {
+                        minWidth: 100,
+                        title: 'Column 7',
+                        key: 'c7'
+                    },
+                    {
                         title: 'action',
                         fixed: 'right',
                         render: (h, p) => h('span', 'hello')
@@ -50,7 +65,10 @@
                       c1: 'c1 content: testing',
                       c2: 'c2 content: attention please',
                       c3: 'c3 content: ... dudu ...',
-                      c4: 'the quick brown fox jumps over the lazy dog.'
+                      c4: 'the quick brown fox jumps over the lazy dog.',
+                      c5: 'c5 content',
+                      c6: 'c6 content',
+                      c7: 'c7 content'
                     }
                 ],
                 columns2: [

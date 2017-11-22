@@ -31,7 +31,8 @@
                     {
                         minWidth: 120,
                         title: 'Column 2',
-                        key: 'c2'
+                        key: 'c2',
+                        ellipsis: true
                     },
                     {
                         maxWidth: 300,
@@ -57,6 +58,7 @@
                     {
                         minWidth: 100,
                         title: 'Column 7',
+                        tip: true,
                         key: 'c7'
                     },
                     {

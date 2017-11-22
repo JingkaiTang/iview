@@ -1,10 +1,16 @@
 ## Fork后的修订信息
 ### Table
+
+#### Width
 为`columns`属性添加了
 - `maxWidth` 最大宽度，自动扩展宽度的最大值
-- `minWidth` 最小宽度，自动宽展宽度的最小值 与`ellipsis`配合使用更佳（开启后，文本将不换行，超出部分显示为省略号）
+- `minWidth` 最小宽度，自动宽展宽度的最小值 与`ellipsis`配合使用更佳（开启后，文本将不换行，超出部分显示为省略号，以具体需求为准）
 
 注意：当`width`属性存在时，会覆盖这两个属性
+
+#### 鼠标hover的提示
+为`columns`属性添加了
+- `tip` Boolean 为`true`时，会以单元格内容填充`span`的`title`属性
 
 ## 原README
 
